@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload CSV Files</title>
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            text-align: center;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+</style>
+<body>
+    <div class="container">
+        <h1>Performance Messages Sender</h1>
+        <section id="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Ensure you are logged in to WhatsApp from this browser window.</li>
+                <li>Download the template files provided for Driver and Performance data.</li>
+                <li>Fill in the template files with the required data. Make sure the data is in the same format as the template.</li>
+                <li>Upload the filled template files using the form below.</li>
+                <li>Click on "Upload" to send the performance messages to drivers.</li>
+            </ol>
+        </section>
+        <hr>
+        <h1>Upload CSV Files</h1>
+        <p>Please upload two CSV files: one for Driver data and another for Performance data.</p>
+        <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="return redirectToUpload()">
+            <div class="file-upload-container">
+                <label for="driver_file">Driver Data:</label>
+                <input type="file" id="driver_file" name="driver_file" accept=".csv">
+                <button type="button" onclick="clearFileInput('driver_file')">Delete</button>
+            </div>
+            <div class="file-upload-container">
+                <label for="performance_file">Performance Data:</label>
+                <input type="file" id="performance_file" name="performance_file" accept=".csv">
+                <button type="button" onclick="clearFileInput('performance_file')">Delete</button>
+            </div>
+            <input type="submit" value="Upload">
+        </form>
+        <hr>
+        <h2>Download Template Files:</h2>
+        <p>Use these template files as guides for formatting your CSV files.</p>
+        <ul>
+            <li><a href="/download/driver_template.csv">Download Driver Data Template</a></li>
+            <li><a href="/download/performance_template.csv">Download Performance Data Template</a></li>
+        </ul>
+    </div>
+    <script>
+        function clearFileInput(inputId) {
+            document.getElementById(inputId).value = null;
+            checkFiles();
+        }
+
+        function redirectToUpload() {
+            // Perform any necessary form validation here
+            // Redirect to upload.html
+            window.location.href = "upload.html";
+            return false; // Prevent the form from submitting
+        }
+    </script>
+</body>
+</html>

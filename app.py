@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, send_file
 import os
+import data
 
 app = Flask(__name__, template_folder='templates')
 
@@ -22,10 +23,13 @@ def upload():
 
         # Here you can perform further processing if needed
         # For example, you can read the CSV files and perform some analysis
-
-        return "Files uploaded successfully"
+        try:
+            data.get_data()
+            return render_template('complete.html')
+        except:
+            return render_template('oops.html')
     else:
-        return "Files not uploaded"
+        return render_template('oops.html')
 
 
 @app.route('/download/<filename>')
